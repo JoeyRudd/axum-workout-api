@@ -1,8 +1,6 @@
-use axum::{
-    routing::get,
-    Router,
-}
+mod models;
 
+use axum::{Router, routing::get};
 
 #[tokio::main]
 async fn main() {
