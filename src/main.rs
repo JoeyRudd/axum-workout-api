@@ -1,14 +1,13 @@
 mod models;
 
 use axum::{Router, routing::get};
-use models::*;
-use sqlx::{Sqlite, database, sqlite::SqlitePool};
+use sqlx::postgres::PgPool;
 
 #[tokio::main]
 async fn main() {
     // build our application with a single route
-    let database_url = "sqlite://workout.db";
-    let pool = SqlitePool::connect(database_url);
+    let database_url = "postgres://postgres:password@localhost/workout_db";
+    let pool = PgPool::connect(database_url).await.unwrap();
 
     // run migrations
     sqlx::migrate!("./migrations").run(&pool).await.unwrap();
