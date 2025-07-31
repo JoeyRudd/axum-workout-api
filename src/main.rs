@@ -1,9 +1,18 @@
 mod models;
 
 use axum::{Router, routing::get};
+use models::*;
+use sqlx::{Sqlite, database, sqlite::SqlitePool};
 
 #[tokio::main]
 async fn main() {
+    // build our application with a single route
+    let database_url = "sqlite://workout.db";
+    let pool = SqlitePool::connect(database_url);
+
+    // run migrations
+    sqlx::migrate!("./migrations").run(&pool).await.unwrap();
+
     // build our application with a single route
     let app = Router::new().route("/", get(|| async { "Hello, World!" }));
 
