@@ -1,0 +1,70 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            UPDATE exercises\n            SET\n                name = COALESCE($2, name),\n                description = COALESCE($3, description),\n                muscle_groups = COALESCE($4, muscle_groups),\n                equipment_needed = COALESCE($5, equipment_needed),\n                exercise_type = COALESCE($6, exercise_type),\n                instructions = COALESCE($7, instructions)\n            WHERE id = $1\n            RETURNING id, name, description, muscle_groups as \"muscle_groups: sqlx::types::Json<Vec<String>>\", equipment_needed, exercise_type, instructions, created_at\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "muscle_groups: sqlx::types::Json<Vec<String>>",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 4,
+        "name": "equipment_needed",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "exercise_type",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "instructions",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Jsonb",
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false
+    ]
+  },
+  "hash": "3db35e3df40ecb0e54604a89ec0da0149582dfc6ee0a5a495c83d453919a7f31"
+}

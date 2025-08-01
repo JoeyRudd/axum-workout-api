@@ -2,6 +2,7 @@
 
 # Environment variables (sensitive data)
 .env
+.envrc
 
 # AI development files (keep out of repo)
 .ai-rules.md

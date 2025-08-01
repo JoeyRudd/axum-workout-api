@@ -1,0 +1,71 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            INSERT INTO exercises (id, name, description, muscle_groups, equipment_needed, exercise_type, instructions, created_at)\n            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)\n            RETURNING id, name, description, muscle_groups as \"muscle_groups: sqlx::types::Json<Vec<String>>\", equipment_needed, exercise_type, instructions, created_at\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "muscle_groups: sqlx::types::Json<Vec<String>>",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 4,
+        "name": "equipment_needed",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "exercise_type",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "instructions",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        "Text",
+        "Jsonb",
+        "Text",
+        "Text",
+        "Text",
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false
+    ]
+  },
+  "hash": "f2e2f0ff3e28c3e709334048597f81a57c0a5bb858119f7db22187c0329b967e"
+}

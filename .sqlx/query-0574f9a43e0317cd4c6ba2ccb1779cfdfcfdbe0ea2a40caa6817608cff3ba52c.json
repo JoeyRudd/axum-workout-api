@@ -1,0 +1,64 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, name, description, muscle_groups as \"muscle_groups: sqlx::types::Json<Vec<String>>\", equipment_needed, exercise_type, instructions, created_at FROM exercises WHERE muscle_groups ? $1 ORDER BY name",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "description",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "muscle_groups: sqlx::types::Json<Vec<String>>",
+        "type_info": "Jsonb"
+      },
+      {
+        "ordinal": 4,
+        "name": "equipment_needed",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "exercise_type",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "instructions",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 7,
+        "name": "created_at",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false
+    ]
+  },
+  "hash": "0574f9a43e0317cd4c6ba2ccb1779cfdfcfdbe0ea2a40caa6817608cff3ba52c"
+}
