@@ -73,7 +73,7 @@ pub mod test_data {
                 "test_{}@example.com",
                 Uuid::new_v4().to_string()[..8].to_string()
             ),
-            password: "test_password_123".to_string(),
+            password: "TestPassword123".to_string(),
         }
     }
 
@@ -81,7 +81,7 @@ pub mod test_data {
         UserCreate {
             username: username.to_string(),
             email: email.to_string(),
-            password: "test_password_123".to_string(),
+            password: "TestPassword123".to_string(),
         }
     }
 

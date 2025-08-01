@@ -20,6 +20,7 @@ pub enum AppError {
     Conflict(String),
     ValidationError(String),
     InternalServerError(String),
+    Unauthorized(String),
 }
 
 impl fmt::Display for AppError {
@@ -31,6 +32,7 @@ impl fmt::Display for AppError {
             AppError::Conflict(msg) => write!(f, "Conflict: {}", msg),
             AppError::ValidationError(msg) => write!(f, "Validation error: {}", msg),
             AppError::InternalServerError(msg) => write!(f, "Internal server error: {}", msg),
+            AppError::Unauthorized(msg) => write!(f, "Unauthorized: {}", msg),
         }
     }
 }
@@ -87,6 +89,7 @@ impl IntoResponse for AppError {
                 "INTERNAL_SERVER_ERROR",
                 msg.as_str(),
             ),
+            AppError::Unauthorized(msg) => (StatusCode::UNAUTHORIZED, "UNAUTHORIZED", msg.as_str()),
         };
 
         let error_response = ErrorResponse {
