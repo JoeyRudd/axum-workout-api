@@ -1,1 +1,4 @@
 /target
+
+# AI development files (keep out of repo)
+.ai-rules.md
