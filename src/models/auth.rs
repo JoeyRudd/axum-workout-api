@@ -70,7 +70,7 @@ pub struct TokenResponse {
 }
 
 /// User response (public user data)
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 pub struct UserResponse {
     pub id: String,
     pub username: String,
