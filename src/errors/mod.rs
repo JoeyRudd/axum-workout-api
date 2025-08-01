@@ -70,20 +70,22 @@ impl From<chrono::ParseError> for AppError {
 // Convert AppError to HTTP responses
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
-        let (status, error_type, message) = match self {
+        let (status, error_type, message) = match &self {
             AppError::Database(_) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 "DATABASE_ERROR",
                 "A database error occurred",
             ),
-            AppError::NotFound(msg) => (StatusCode::NOT_FOUND, "NOT_FOUND", &msg),
-            AppError::BadRequest(msg) => (StatusCode::BAD_REQUEST, "BAD_REQUEST", &msg),
-            AppError::Conflict(msg) => (StatusCode::CONFLICT, "CONFLICT", &msg),
-            AppError::ValidationError(msg) => (StatusCode::BAD_REQUEST, "VALIDATION_ERROR", &msg),
+            AppError::NotFound(msg) => (StatusCode::NOT_FOUND, "NOT_FOUND", msg.as_str()),
+            AppError::BadRequest(msg) => (StatusCode::BAD_REQUEST, "BAD_REQUEST", msg.as_str()),
+            AppError::Conflict(msg) => (StatusCode::CONFLICT, "CONFLICT", msg.as_str()),
+            AppError::ValidationError(msg) => {
+                (StatusCode::BAD_REQUEST, "VALIDATION_ERROR", msg.as_str())
+            }
             AppError::InternalServerError(msg) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
                 "INTERNAL_SERVER_ERROR",
-                &msg,
+                msg.as_str(),
             ),
         };
 

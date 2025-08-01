@@ -1,4 +1,7 @@
 /target
 
+# Environment variables (sensitive data)
+.env
+
 # AI development files (keep out of repo)
 .ai-rules.md
