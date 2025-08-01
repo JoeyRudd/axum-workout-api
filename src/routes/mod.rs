@@ -50,11 +50,11 @@ fn public_routes() -> Router<AppState> {
         )
         // User existence checks (public)
         .route(
-            "/api/users/exists/username/:username",
+            "/api/users/exists/username/{username}",
             get(user_handlers::check_user_exists_by_username),
         )
         .route(
-            "/api/users/exists/email/:email",
+            "/api/users/exists/email/{email}",
             get(user_handlers::check_user_exists_by_email),
         )
 }
@@ -85,11 +85,11 @@ fn user_routes() -> Router<AppState> {
             "/api/users/me",
             get(user_handlers::get_current_user_profile),
         )
-        .route("/api/users/:user_id", get(user_handlers::get_user_by_id))
-        .route("/api/users/:user_id", put(user_handlers::update_user))
-        .route("/api/users/:user_id", delete(user_handlers::delete_user))
+        .route("/api/users/{user_id}", get(user_handlers::get_user_by_id))
+        .route("/api/users/{user_id}", put(user_handlers::update_user))
+        .route("/api/users/{user_id}", delete(user_handlers::delete_user))
         .route(
-            "/api/users/username/:username",
+            "/api/users/username/{username}",
             get(user_handlers::get_user_by_username),
         )
 }
@@ -98,10 +98,9 @@ fn user_routes() -> Router<AppState> {
 fn admin_routes() -> Router<AppState> {
     Router::new()
         // Admin user management
-        .route("/api/admin/users", get(auth_handlers::admin_get_all_users))
         .route("/api/admin/users", get(user_handlers::list_users))
         .route(
-            "/api/admin/users/:user_id",
+            "/api/admin/users/{user_id}",
             delete(auth_handlers::admin_delete_user),
         )
 }
